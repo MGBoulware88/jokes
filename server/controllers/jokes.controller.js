@@ -3,7 +3,7 @@ const Joke = require('../models/jokes.model');
 module.exports.getAllJokes = (req, res) => {
     Joke.find()
         .then((allJokes) => {
-            res.json({ users: allJokes })
+            res.json({ jokes: allJokes })
         })
         .catch((err) => {
             res.json({ message: 'Something went wrong', error: err })
@@ -13,7 +13,7 @@ module.exports.getAllJokes = (req, res) => {
 module.exports.getOneJokeById = (req, res) => {
     Joke.findOne({ _id: req.params.id })
         .then(oneJoke => {
-            res.json({ user: oneJoke })
+            res.json({ joke: oneJoke })
         })
         .catch((err) => {
             res.json({ message: 'Something went wrong', error: err })
@@ -23,7 +23,7 @@ module.exports.getOneJokeById = (req, res) => {
 module.exports.getOneRandomJoke = (req, res) => {
     Joke.findOneRandom()
         .then(randomJoke => {
-            res.json({ user: randomJoke })
+            res.json({ joke: randomJoke })
         })
         .catch((err) => {
             res.json({ message: 'Something went wrong', error: err })
@@ -33,7 +33,7 @@ module.exports.getOneRandomJoke = (req, res) => {
 module.exports.createNewJoke = (req, res) => {
     Joke.create(req.body)
         .then(newlyCreatedJoke => {
-            res.json({ user: newlyCreatedJoke })
+            res.json({ joke: newlyCreatedJoke })
         })
         .catch((err) => {
             res.json({ message: 'Something went wrong', error: err })
@@ -47,7 +47,7 @@ module.exports.updateExistingJokeById = (req, res) => {
         { new: true, runValidators: true }
     )
         .then(updatedJoke => {
-            res.json({ user: updatedJoke })
+            res.json({ joke: updatedJoke })
         })
         .catch((err) => {
             res.json({ message: 'Something went wrong', error: err })
